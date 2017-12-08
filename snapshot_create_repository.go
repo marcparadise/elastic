@@ -150,9 +150,6 @@ func (s *SnapshotCreateRepositoryService) Validate() error {
 	if s.repository == "" {
 		invalid = append(invalid, "Repository")
 	}
-	if s.bodyString == "" && s.bodyJson == nil {
-		invalid = append(invalid, "BodyJson")
-	}
 	if len(invalid) > 0 {
 		return fmt.Errorf("missing required fields: %v", invalid)
 	}
@@ -161,6 +158,7 @@ func (s *SnapshotCreateRepositoryService) Validate() error {
 
 // Do executes the operation.
 func (s *SnapshotCreateRepositoryService) Do(ctx context.Context) (*SnapshotCreateRepositoryResponse, error) {
+
 	// Check pre-conditions
 	if err := s.Validate(); err != nil {
 		return nil, err
